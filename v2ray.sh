@@ -44,8 +44,8 @@ fi
 echo "Download binary file: ${V2RAY_FILE} ${DGST_FILE} completed"
 
 # Check SHA512
-V2RAY_ZIP_HASH=$(openssl dgst -sha512 v2ray.zip | sed 's/([^)]*)//g')
-V2RAY_ZIP_DGST_HASH=$(cat v2ray.zip.dgst | grep -e 'SHA512' -e 'SHA2-512'  | head -n1)
+V2RAY_ZIP_HASH=$(openssl dgst -sha512 v2ray.zip | sed 's/([^)]*)//g'| cut -d' ' -f2)
+V2RAY_ZIP_DGST_HASH=$(cat v2ray.zip.dgst | grep -e 'SHA512' -e 'SHA2-512'  | head -n1 | cut -d' ' -f2)
 
 if [ "${V2RAY_ZIP_HASH}" = "${V2RAY_ZIP_DGST_HASH}" ]; then
     echo " Check passed" && rm -fv v2ray.zip.dgst
